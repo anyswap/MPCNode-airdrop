@@ -45,6 +45,12 @@ contract Airdrop {
         }
     }
 
+    function clearUsers(address[] memory _users) public onlyOwner {
+        for (uint256 i = 0; i < _users.length; i++) {
+            rewards[_users[i]] = 0;
+        }
+    }
+
     function claim() public returns (bool) {
         uint256 amount = rewards[msg.sender];
         require(amount > 1, "invalid amount");
